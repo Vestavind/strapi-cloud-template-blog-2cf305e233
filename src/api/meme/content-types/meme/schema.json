@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "memes",
+  "info": {
+    "singularName": "meme",
+    "pluralName": "memes",
+    "displayName": "Meme"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "memeImage": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "memeTitle": {
+      "type": "string",
+      "maxLength": 30,
+      "unique": true,
+      "minLength": 3
+    }
+  }
+}

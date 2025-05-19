@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "folks",
+  "info": {
+    "singularName": "folk",
+    "pluralName": "folks",
+    "displayName": "Folk"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "profileImage": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "fullName": {
+      "type": "string",
+      "required": true,
+      "maxLength": 50,
+      "minLength": 3
+    },
+    "role": {
+      "type": "string",
+      "default": "Styremedlem",
+      "required": true,
+      "maxLength": 50
+    },
+    "contactMail": {
+      "type": "email"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 100
+    }
+  }
+}
