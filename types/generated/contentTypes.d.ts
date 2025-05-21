@@ -608,6 +608,111 @@ export interface ApiMemeMeme extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPodcastPodcast extends Struct.CollectionTypeSchema {
+  collectionName: 'podcasts';
+  info: {
+    displayName: 'Podcast';
+    pluralName: 'podcasts';
+    singularName: 'podcast';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    hostingPodcastName: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Sunn Fornuft!'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::podcast.podcast'
+    > &
+      Schema.Attribute.Private;
+    podcastURL: Schema.Attribute.String & Schema.Attribute.Required;
+    publishDate: Schema.Attribute.Date;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    totalDuration: Schema.Attribute.Time;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    videoIncluded: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+  };
+}
+
+export interface ApiTargetGroupFunnelTargetGroupFunnel
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'target_group_funnels';
+  info: {
+    description: '';
+    displayName: 'TargetGroupFunnel';
+    pluralName: 'target-group-funnels';
+    singularName: 'target-group-funnel';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.DynamicZone<
+      ['shared.media', 'shared.rich-text', 'shared.quote']
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::target-group-funnel.target-group-funnel'
+    > &
+      Schema.Attribute.Private;
+    metadata: Schema.Attribute.Component<'shared.seo', false>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.DefaultTo<'this-is-a-slug'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiVimeoVideoVimeoVideo extends Struct.CollectionTypeSchema {
+  collectionName: 'vimeo_videos';
+  info: {
+    displayName: 'VimeoVideo';
+    pluralName: 'vimeo-videos';
+    singularName: 'vimeo-video';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::vimeo-video.vimeo-video'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    vimeoURL: Schema.Attribute.String;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1124,6 +1229,9 @@ declare module '@strapi/strapi' {
       'api::folk.folk': ApiFolkFolk;
       'api::global.global': ApiGlobalGlobal;
       'api::meme.meme': ApiMemeMeme;
+      'api::podcast.podcast': ApiPodcastPodcast;
+      'api::target-group-funnel.target-group-funnel': ApiTargetGroupFunnelTargetGroupFunnel;
+      'api::vimeo-video.vimeo-video': ApiVimeoVideoVimeoVideo;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
