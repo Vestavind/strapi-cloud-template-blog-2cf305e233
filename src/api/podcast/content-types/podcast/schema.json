@@ -4,7 +4,8 @@
   "info": {
     "singularName": "podcast",
     "pluralName": "podcasts",
-    "displayName": "Podcast"
+    "displayName": "Podcast",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -34,6 +35,11 @@
     },
     "podcastURL": {
       "type": "string",
+      "required": true
+    },
+    "egenPodcast": {
+      "type": "boolean",
+      "default": false,
       "required": true
     }
   }

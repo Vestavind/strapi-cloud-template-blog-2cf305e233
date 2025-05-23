@@ -446,6 +446,7 @@ export interface ApiMemeMeme extends Struct.CollectionTypeSchema {
 export interface ApiPodcastPodcast extends Struct.CollectionTypeSchema {
   collectionName: 'podcasts';
   info: {
+    description: '';
     displayName: 'Podcast';
     pluralName: 'podcasts';
     singularName: 'podcast';
@@ -458,6 +459,9 @@ export interface ApiPodcastPodcast extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
+    egenPodcast: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
     hostingPodcastName: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'Sunn Fornuft!'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
