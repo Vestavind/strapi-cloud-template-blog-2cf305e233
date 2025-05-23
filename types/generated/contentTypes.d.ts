@@ -478,7 +478,8 @@ export interface ApiPodcastPodcast extends Struct.CollectionTypeSchema {
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 100;
       }>;
-    totalDuration: Schema.Attribute.Time;
+    totalDuration: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'00:00:00'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
