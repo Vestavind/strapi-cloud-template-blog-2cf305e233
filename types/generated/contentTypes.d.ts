@@ -461,7 +461,7 @@ export interface ApiListPositionListPosition
   info: {
     description: '';
     displayName: 'ListePosisjon';
-    mainField: 'displayName';
+    mainField: 'name';
     pluralName: 'list-positions';
     singularName: 'list-position';
   };
@@ -472,7 +472,6 @@ export interface ApiListPositionListPosition
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    displayName: Schema.Attribute.String & Schema.Attribute.Private;
     fylke: Schema.Attribute.Enumeration<
       [
         'Aust-Agder',
@@ -507,6 +506,7 @@ export interface ApiListPositionListPosition
       'api::list-position.list-position'
     > &
       Schema.Attribute.Private;
+    name: Schema.Attribute.String;
     posisjon: Schema.Attribute.Integer &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMax<
@@ -517,9 +517,6 @@ export interface ApiListPositionListPosition
         number
       >;
     publishedAt: Schema.Attribute.DateTime;
-    tekstHint: Schema.Attribute.String &
-      Schema.Attribute.Private &
-      Schema.Attribute.DefaultTo<'Fylke / nr'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

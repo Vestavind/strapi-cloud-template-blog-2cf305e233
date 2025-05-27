@@ -5,12 +5,16 @@
     "singularName": "list-position",
     "pluralName": "list-positions",
     "displayName": "ListePosisjon",
-    "description": ""
+    "description": "",
+    "mainField": "name"
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
+    "name": {
+      "type": "string"
+    },
     "fylke": {
       "type": "enumeration",
       "enum": [
@@ -47,11 +51,6 @@
       "relation": "manyToOne",
       "target": "api::listekandidat.listekandidat",
       "inversedBy": "liste_posisjoner"
-    },
-    "tekstHint": {
-      "type": "string",
-      "default": "Fylke / nr",
-      "private": true
     }
   }
 }
