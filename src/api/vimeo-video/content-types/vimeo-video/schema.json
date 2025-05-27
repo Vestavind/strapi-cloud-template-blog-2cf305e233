@@ -4,7 +4,8 @@
   "info": {
     "singularName": "vimeo-video",
     "pluralName": "vimeo-videos",
-    "displayName": "VimeoVideo"
+    "displayName": "VimeoVideo",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,6 +15,22 @@
       "type": "string"
     },
     "vimeoURL": {
+      "type": "string"
+    },
+    "priority": {
+      "type": "integer",
+      "min": 0
+    },
+    "xPostLink": {
+      "type": "string"
+    },
+    "instagramPostLink": {
+      "type": "string"
+    },
+    "fbPostLink": {
+      "type": "string"
+    },
+    "tiktokPostLink": {
       "type": "string"
     }
   }

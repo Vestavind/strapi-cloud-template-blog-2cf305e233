@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "Article"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 200
+    },
+    "heroImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "articleImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "textContent": {
+      "type": "richtext",
+      "required": true
+    },
+    "authorName": {
+      "type": "string"
+    },
+    "date": {
+      "type": "date"
+    },
+    "Category": {
+      "type": "enumeration",
+      "enum": [
+        "Politikk",
+        "Samfunn",
+        "Krig",
+        "Økonomi",
+        "Kultur"
+      ],
+      "required": true,
+      "default": "Politikk"
+    }
+  }
+}

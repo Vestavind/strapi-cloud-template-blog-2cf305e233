@@ -369,6 +369,50 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
+  collectionName: 'articles';
+  info: {
+    displayName: 'Article';
+    pluralName: 'articles';
+    singularName: 'article';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    articleImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    authorName: Schema.Attribute.String;
+    Category: Schema.Attribute.Enumeration<
+      ['Politikk', 'Samfunn', 'Krig', '\u00D8konomi', 'Kultur']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Politikk'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.Date;
+    heroImage: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::article.article'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    textContent: Schema.Attribute.RichText & Schema.Attribute.Required;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 200;
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiFolkFolk extends Struct.CollectionTypeSchema {
   collectionName: 'folks';
   info: {
@@ -405,6 +449,118 @@ export interface ApiFolkFolk extends Struct.CollectionTypeSchema {
         maxLength: 50;
       }> &
       Schema.Attribute.DefaultTo<'Styremedlem'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiListPositionListPosition
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'list_positions';
+  info: {
+    description: '';
+    displayName: 'ListePosisjon';
+    mainField: 'displayName';
+    pluralName: 'list-positions';
+    singularName: 'list-position';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    displayName: Schema.Attribute.String & Schema.Attribute.Private;
+    fylke: Schema.Attribute.Enumeration<
+      [
+        'Aust-Agder',
+        'Vest-Agder',
+        'Akershus',
+        'Buskerud',
+        'Finnmark',
+        'Hedmark',
+        'Hordaland',
+        'M\u00F8re og Romsdal',
+        'Nordland',
+        'Oppland',
+        'Oslo',
+        'Rogaland',
+        'Sogn og Fjordane',
+        'Telemark',
+        'Troms',
+        'Nord-Tr\u00F8ndelag',
+        'S\u00F8r-Tr\u00F8ndelag',
+        'Vestfold',
+        '\u00D8stfold',
+      ]
+    > &
+      Schema.Attribute.Required;
+    liste_kandidat: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::listekandidat.listekandidat'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::list-position.list-position'
+    > &
+      Schema.Attribute.Private;
+    posisjon: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 20;
+          min: 1;
+        },
+        number
+      >;
+    publishedAt: Schema.Attribute.DateTime;
+    tekstHint: Schema.Attribute.String &
+      Schema.Attribute.Private &
+      Schema.Attribute.DefaultTo<'Fylke / nr'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiListekandidatListekandidat
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'listekandidats';
+  info: {
+    description: '';
+    displayName: 'ListeKandidat';
+    pluralName: 'listekandidats';
+    singularName: 'listekandidat';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    aboutText: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 1000;
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    liste_posisjoner: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::list-position.list-position'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::listekandidat.listekandidat'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    profileImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -527,6 +683,7 @@ export interface ApiTargetGroupFunnelTargetGroupFunnel
 export interface ApiVimeoVideoVimeoVideo extends Struct.CollectionTypeSchema {
   collectionName: 'vimeo_videos';
   info: {
+    description: '';
     displayName: 'VimeoVideo';
     pluralName: 'vimeo-videos';
     singularName: 'vimeo-video';
@@ -538,18 +695,29 @@ export interface ApiVimeoVideoVimeoVideo extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    fbPostLink: Schema.Attribute.String;
+    instagramPostLink: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::vimeo-video.vimeo-video'
     > &
       Schema.Attribute.Private;
+    priority: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
     publishedAt: Schema.Attribute.DateTime;
+    tiktokPostLink: Schema.Attribute.String;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     vimeoURL: Schema.Attribute.String;
+    xPostLink: Schema.Attribute.String;
   };
 }
 
@@ -1062,7 +1230,10 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::article.article': ApiArticleArticle;
       'api::folk.folk': ApiFolkFolk;
+      'api::list-position.list-position': ApiListPositionListPosition;
+      'api::listekandidat.listekandidat': ApiListekandidatListekandidat;
       'api::meme.meme': ApiMemeMeme;
       'api::podcast.podcast': ApiPodcastPodcast;
       'api::target-group-funnel.target-group-funnel': ApiTargetGroupFunnelTargetGroupFunnel;

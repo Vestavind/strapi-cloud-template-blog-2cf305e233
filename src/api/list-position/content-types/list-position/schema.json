@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "list_positions",
+  "info": {
+    "singularName": "list-position",
+    "pluralName": "list-positions",
+    "displayName": "ListePosisjon",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "fylke": {
+      "type": "enumeration",
+      "enum": [
+        "Aust-Agder",
+        "Vest-Agder",
+        "Akershus",
+        "Buskerud",
+        "Finnmark",
+        "Hedmark",
+        "Hordaland",
+        "Møre og Romsdal",
+        "Nordland",
+        "Oppland",
+        "Oslo",
+        "Rogaland",
+        "Sogn og Fjordane",
+        "Telemark",
+        "Troms",
+        "Nord-Trøndelag",
+        "Sør-Trøndelag",
+        "Vestfold",
+        "Østfold"
+      ],
+      "required": true
+    },
+    "posisjon": {
+      "type": "integer",
+      "required": true,
+      "min": 1,
+      "max": 20
+    },
+    "liste_kandidat": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::listekandidat.listekandidat",
+      "inversedBy": "liste_posisjoner"
+    },
+    "tekstHint": {
+      "type": "string",
+      "default": "Fylke / nr",
+      "private": true
+    }
+  }
+}

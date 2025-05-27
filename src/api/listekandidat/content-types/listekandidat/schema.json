@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "listekandidats",
+  "info": {
+    "singularName": "listekandidat",
+    "pluralName": "listekandidats",
+    "displayName": "ListeKandidat",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "profileImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "liste_posisjoner": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::list-position.list-position",
+      "mappedBy": "liste_kandidat"
+    },
+    "aboutText": {
+      "type": "text",
+      "maxLength": 1000
+    }
+  }
+}
