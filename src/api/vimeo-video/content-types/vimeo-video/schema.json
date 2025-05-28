@@ -10,6 +10,11 @@
   "options": {
     "draftAndPublish": true
   },
+  "pluginOptions": {
+    "content-manager": {
+      "visible": true
+    }
+  },
   "attributes": {
     "title": {
       "type": "string"
