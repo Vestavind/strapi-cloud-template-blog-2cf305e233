@@ -403,6 +403,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.String & Schema.Attribute.Required;
     textContent: Schema.Attribute.RichText & Schema.Attribute.Required;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
