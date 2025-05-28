@@ -16,9 +16,10 @@
       "required": true,
       "maxLength": 100
     },
-    "videoIncluded": {
-      "type": "boolean",
-      "default": true
+    "totalDuration": {
+      "type": "string",
+      "default": "00:00:00",
+      "regex": "^\\d+:[0-5]\\d:[0-5]\\d$"
     },
     "description": {
       "type": "text"
@@ -39,10 +40,9 @@
       "default": false,
       "required": true
     },
-    "totalDuration": {
-      "type": "string",
-      "default": "00:00:00",
-      "regex": "^\\d+:[0-5]\\d:[0-5]\\d$"
+    "videoIncluded": {
+      "type": "boolean",
+      "default": true
     }
   }
 }

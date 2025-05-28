@@ -16,30 +16,28 @@
       "required": true,
       "maxLength": 200
     },
-    "heroImage": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+    "slug": {
+      "type": "string",
+      "required": true
     },
     "articleImage": {
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "allowedTypes": ["images"]
+    },
+    "heroImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
     },
     "textContent": {
       "type": "richtext",
+      "required": true
+    },
+    "excerpt": {
+      "type": "string",
       "required": true
     },
     "authorName": {
@@ -50,23 +48,9 @@
     },
     "Category": {
       "type": "enumeration",
-      "enum": [
-        "Politikk",
-        "Samfunn",
-        "Krig",
-        "Økonomi",
-        "Kultur"
-      ],
+      "enum": ["Politikk", "Samfunn", "Krig", "Økonomi", "Kultur"],
       "required": true,
       "default": "Politikk"
-    },
-    "excerpt": {
-      "type": "string",
-      "required": true
-    },
-    "slug": {
-      "type": "string",
-      "required": true
     }
   }
 }

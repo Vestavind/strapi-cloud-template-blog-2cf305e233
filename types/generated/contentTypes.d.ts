@@ -381,9 +381,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    articleImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
+    articleImage: Schema.Attribute.Media<'images'>;
     authorName: Schema.Attribute.String;
     Category: Schema.Attribute.Enumeration<
       ['Politikk', 'Samfunn', 'Krig', '\u00D8konomi', 'Kultur']
@@ -395,7 +393,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     date: Schema.Attribute.Date;
     excerpt: Schema.Attribute.String & Schema.Attribute.Required;
-    heroImage: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    heroImage: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
