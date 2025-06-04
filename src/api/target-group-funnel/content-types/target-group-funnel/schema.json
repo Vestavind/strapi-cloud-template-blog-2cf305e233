@@ -17,6 +17,10 @@
       "unique": true,
       "required": true
     },
+    "emoji": {
+      "type": "string",
+      "maxLength": 11
+    },
     "metadata": {
       "type": "component",
       "repeatable": false,
@@ -24,15 +28,7 @@
     },
     "content": {
       "type": "dynamiczone",
-      "components": [
-        "shared.media",
-        "shared.rich-text",
-        "shared.quote"
-      ]
-    },
-    "emoji": {
-      "type": "string",
-      "maxLength": 5
+      "components": ["shared.media", "shared.rich-text", "shared.quote"]
     }
   }
 }
