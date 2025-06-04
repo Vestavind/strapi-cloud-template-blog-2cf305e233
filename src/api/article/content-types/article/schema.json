@@ -24,13 +24,17 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "heroImage": {
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "textContent": {
       "type": "richtext",
@@ -48,9 +52,23 @@
     },
     "Category": {
       "type": "enumeration",
-      "enum": ["Politikk", "Samfunn", "Krig", "Økonomi", "Kultur"],
+      "enum": [
+        "Politikk",
+        "Samfunn",
+        "Krig",
+        "Økonomi",
+        "Kultur"
+      ],
       "required": true,
       "default": "Politikk"
+    },
+    "xLink": {
+      "type": "string",
+      "unique": true
+    },
+    "fbLink": {
+      "type": "string",
+      "unique": true
     }
   }
 }

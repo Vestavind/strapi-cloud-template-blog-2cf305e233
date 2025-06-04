@@ -393,6 +393,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     date: Schema.Attribute.Date;
     excerpt: Schema.Attribute.String & Schema.Attribute.Required;
+    fbLink: Schema.Attribute.String & Schema.Attribute.Unique;
     heroImage: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -411,6 +412,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    xLink: Schema.Attribute.String & Schema.Attribute.Unique;
   };
 }
 
