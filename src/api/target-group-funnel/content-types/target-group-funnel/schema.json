@@ -29,6 +29,10 @@
         "shared.rich-text",
         "shared.quote"
       ]
+    },
+    "emoji": {
+      "type": "string",
+      "maxLength": 5
     }
   }
 }
