@@ -69,6 +69,10 @@
     "fbLink": {
       "type": "string",
       "unique": true
+    },
+    "ufLink": {
+      "type": "string",
+      "unique": true
     }
   }
 }
