@@ -544,9 +544,14 @@ export interface ApiListekandidatListekandidat
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 1000;
       }>;
+    birthYear: Schema.Attribute.Integer;
+    contactMail: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    fbProfileLink: Schema.Attribute.String;
+    igProfileLink: Schema.Attribute.String;
+    linkedInProfileLink: Schema.Attribute.String;
     liste_posisjoner: Schema.Attribute.Relation<
       'oneToMany',
       'api::list-position.list-position'
@@ -562,9 +567,13 @@ export interface ApiListekandidatListekandidat
       'images' | 'files' | 'videos' | 'audios'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    tiktokProfileLink: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    vimeoURL: Schema.Attribute.String;
+    websiteLink: Schema.Attribute.String;
+    xProfileLink: Schema.Attribute.String;
   };
 }
 

@@ -35,6 +35,33 @@
     "aboutText": {
       "type": "text",
       "maxLength": 1000
+    },
+    "birthYear": {
+      "type": "integer"
+    },
+    "fbProfileLink": {
+      "type": "string"
+    },
+    "xProfileLink": {
+      "type": "string"
+    },
+    "websiteLink": {
+      "type": "string"
+    },
+    "tiktokProfileLink": {
+      "type": "string"
+    },
+    "igProfileLink": {
+      "type": "string"
+    },
+    "linkedInProfileLink": {
+      "type": "string"
+    },
+    "contactMail": {
+      "type": "string"
+    },
+    "vimeoURL": {
+      "type": "string"
     }
   }
 }
