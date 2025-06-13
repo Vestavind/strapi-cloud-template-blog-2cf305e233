@@ -27,12 +27,6 @@
         "audios"
       ]
     },
-    "liste_posisjoner": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::list-position.list-position",
-      "mappedBy": "liste_kandidat"
-    },
     "aboutText": {
       "type": "text",
       "maxLength": 1000
@@ -63,6 +57,12 @@
     },
     "vimeoURL": {
       "type": "string"
+    },
+    "profileId": {
+      "type": "integer",
+      "unique": true,
+      "required": false,
+      "min": 0
     }
   }
 }

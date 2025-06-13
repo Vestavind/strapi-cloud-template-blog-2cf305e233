@@ -459,74 +459,6 @@ export interface ApiFolkFolk extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiListPositionListPosition
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'list_positions';
-  info: {
-    description: '';
-    displayName: 'ListePosisjon';
-    mainField: 'name';
-    pluralName: 'list-positions';
-    singularName: 'list-position';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    fylke: Schema.Attribute.Enumeration<
-      [
-        'Aust-Agder',
-        'Vest-Agder',
-        'Akershus',
-        'Buskerud',
-        'Finnmark',
-        'Hedmark',
-        'Hordaland',
-        'M\u00F8re og Romsdal',
-        'Nordland',
-        'Oppland',
-        'Oslo',
-        'Rogaland',
-        'Sogn og Fjordane',
-        'Telemark',
-        'Troms',
-        'Nord-Tr\u00F8ndelag',
-        'S\u00F8r-Tr\u00F8ndelag',
-        'Vestfold',
-        '\u00D8stfold',
-      ]
-    > &
-      Schema.Attribute.Required;
-    liste_kandidat: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::listekandidat.listekandidat'
-    >;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::list-position.list-position'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    posisjon: Schema.Attribute.Integer &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMax<
-        {
-          max: 20;
-          min: 1;
-        },
-        number
-      >;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiListekandidatListekandidat
   extends Struct.CollectionTypeSchema {
   collectionName: 'listekandidats';
@@ -552,10 +484,6 @@ export interface ApiListekandidatListekandidat
     fbProfileLink: Schema.Attribute.String;
     igProfileLink: Schema.Attribute.String;
     linkedInProfileLink: Schema.Attribute.String;
-    liste_posisjoner: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::list-position.list-position'
-    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -565,6 +493,14 @@ export interface ApiListekandidatListekandidat
     name: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
+    profileId: Schema.Attribute.Integer &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
     profileImage: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;
@@ -1253,7 +1189,6 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::article.article': ApiArticleArticle;
       'api::folk.folk': ApiFolkFolk;
-      'api::list-position.list-position': ApiListPositionListPosition;
       'api::listekandidat.listekandidat': ApiListekandidatListekandidat;
       'api::meme.meme': ApiMemeMeme;
       'api::podcast.podcast': ApiPodcastPodcast;
