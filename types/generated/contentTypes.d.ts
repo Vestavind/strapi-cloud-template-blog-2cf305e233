@@ -474,9 +474,8 @@ export interface ApiListekandidatListekandidat
   attributes: {
     aboutText: Schema.Attribute.Text &
       Schema.Attribute.SetMinMaxLength<{
-        maxLength: 1000;
+        maxLength: 2000;
       }>;
-    birthYear: Schema.Attribute.Integer;
     contactMail: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

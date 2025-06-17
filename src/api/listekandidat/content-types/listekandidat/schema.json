@@ -29,10 +29,7 @@
     },
     "aboutText": {
       "type": "text",
-      "maxLength": 1000
-    },
-    "birthYear": {
-      "type": "integer"
+      "maxLength": 2000
     },
     "fbProfileLink": {
       "type": "string"
