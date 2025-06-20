@@ -18,7 +18,8 @@
     },
     "slug": {
       "type": "string",
-      "required": true
+      "required": true,
+      "unique": true
     },
     "articleImage": {
       "type": "media",
@@ -73,6 +74,10 @@
     "ufLink": {
       "type": "string",
       "unique": true
+    },
+    "imageText": {
+      "type": "string",
+      "maxLength": 500
     }
   }
 }

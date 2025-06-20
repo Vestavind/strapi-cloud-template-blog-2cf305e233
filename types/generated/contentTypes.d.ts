@@ -395,6 +395,10 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     excerpt: Schema.Attribute.String & Schema.Attribute.Required;
     fbLink: Schema.Attribute.String & Schema.Attribute.Unique;
     heroImage: Schema.Attribute.Media<'images'>;
+    imageText: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 500;
+      }>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -402,7 +406,9 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.String & Schema.Attribute.Required;
+    slug: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     textContent: Schema.Attribute.RichText & Schema.Attribute.Required;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
