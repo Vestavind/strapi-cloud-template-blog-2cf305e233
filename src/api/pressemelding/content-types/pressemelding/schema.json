@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pressemeldings",
+  "info": {
+    "singularName": "pressemelding",
+    "pluralName": "pressemeldings",
+    "displayName": "Pressemelding"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "file": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": false
+    },
+    "date": {
+      "type": "date"
+    }
+  }
+}

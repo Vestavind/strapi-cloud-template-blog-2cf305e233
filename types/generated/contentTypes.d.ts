@@ -596,6 +596,37 @@ export interface ApiPodcastPodcast extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPressemeldingPressemelding
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'pressemeldings';
+  info: {
+    displayName: 'Pressemelding';
+    pluralName: 'pressemeldings';
+    singularName: 'pressemelding';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.Date;
+    file: Schema.Attribute.Media<'files'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::pressemelding.pressemelding'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiTargetGroupFunnelTargetGroupFunnel
   extends Struct.CollectionTypeSchema {
   collectionName: 'target_group_funnels';
@@ -1197,6 +1228,7 @@ declare module '@strapi/strapi' {
       'api::listekandidat.listekandidat': ApiListekandidatListekandidat;
       'api::meme.meme': ApiMemeMeme;
       'api::podcast.podcast': ApiPodcastPodcast;
+      'api::pressemelding.pressemelding': ApiPressemeldingPressemelding;
       'api::target-group-funnel.target-group-funnel': ApiTargetGroupFunnelTargetGroupFunnel;
       'api::vimeo-video.vimeo-video': ApiVimeoVideoVimeoVideo;
       'plugin::content-releases.release': PluginContentReleasesRelease;
