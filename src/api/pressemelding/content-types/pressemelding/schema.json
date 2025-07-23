@@ -4,7 +4,8 @@
   "info": {
     "singularName": "pressemelding",
     "pluralName": "pressemeldings",
-    "displayName": "Pressemelding"
+    "displayName": "Pressemelding",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,15 +15,27 @@
       "type": "string"
     },
     "file": {
-      "allowedTypes": [
-        "files"
-      ],
       "type": "media",
       "multiple": false,
-      "required": false
+      "required": false,
+      "allowedTypes": [
+        "files"
+      ]
     },
     "date": {
       "type": "date"
+    },
+    "language": {
+      "type": "enumeration",
+      "enum": [
+        "norwegian",
+        "english",
+        "foreign"
+      ],
+      "default": "norwegian"
+    },
+    "messageIdOptional": {
+      "type": "integer"
     }
   }
 }

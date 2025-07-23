@@ -600,6 +600,7 @@ export interface ApiPressemeldingPressemelding
   extends Struct.CollectionTypeSchema {
   collectionName: 'pressemeldings';
   info: {
+    description: '';
     displayName: 'Pressemelding';
     pluralName: 'pressemeldings';
     singularName: 'pressemelding';
@@ -613,12 +614,17 @@ export interface ApiPressemeldingPressemelding
       Schema.Attribute.Private;
     date: Schema.Attribute.Date;
     file: Schema.Attribute.Media<'files'>;
+    language: Schema.Attribute.Enumeration<
+      ['norwegian', 'english', 'foreign']
+    > &
+      Schema.Attribute.DefaultTo<'norwegian'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::pressemelding.pressemelding'
     > &
       Schema.Attribute.Private;
+    messageIdOptional: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
