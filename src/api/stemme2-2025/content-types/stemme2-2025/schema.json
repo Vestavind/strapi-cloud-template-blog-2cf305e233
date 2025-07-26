@@ -4,7 +4,8 @@
   "info": {
     "singularName": "stemme2-2025",
     "pluralName": "stemme2-2025s",
-    "displayName": "Stemme2-2025"
+    "displayName": "Stemme2-2025",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,10 +15,12 @@
       "type": "string"
     },
     "phoneNumber": {
-      "type": "biginteger"
+      "type": "biginteger",
+      "unique": true
     },
     "emailAddress": {
-      "type": "email"
+      "type": "email",
+      "unique": true
     },
     "postalCode": {
       "type": "integer",

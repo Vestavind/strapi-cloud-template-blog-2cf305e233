@@ -636,6 +636,7 @@ export interface ApiPressemeldingPressemelding
 export interface ApiStemme22025Stemme22025 extends Struct.CollectionTypeSchema {
   collectionName: 'stemme2_2025s';
   info: {
+    description: '';
     displayName: 'Stemme2-2025';
     pluralName: 'stemme2-2025s';
     singularName: 'stemme2-2025';
@@ -647,7 +648,7 @@ export interface ApiStemme22025Stemme22025 extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    emailAddress: Schema.Attribute.Email;
+    emailAddress: Schema.Attribute.Email & Schema.Attribute.Unique;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -655,7 +656,7 @@ export interface ApiStemme22025Stemme22025 extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
-    phoneNumber: Schema.Attribute.BigInteger;
+    phoneNumber: Schema.Attribute.BigInteger & Schema.Attribute.Unique;
     postalCode: Schema.Attribute.Integer &
       Schema.Attribute.SetMinMax<
         {
