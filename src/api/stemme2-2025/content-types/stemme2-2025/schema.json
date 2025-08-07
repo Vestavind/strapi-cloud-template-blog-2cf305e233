@@ -25,6 +25,9 @@
     "postalCode": {
       "type": "integer",
       "max": 9999
+    },
+    "wantsFreeMembership": {
+      "type": "boolean"
     }
   }
 }
