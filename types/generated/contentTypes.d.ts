@@ -664,6 +664,11 @@ export interface ApiStemme22025Stemme22025 extends Struct.CollectionTypeSchema {
         },
         number
       >;
+    postalCodeText: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 4;
+        minLength: 4;
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
