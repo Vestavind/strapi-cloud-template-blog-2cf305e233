@@ -657,13 +657,6 @@ export interface ApiStemme22025Stemme22025 extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
     phoneNumber: Schema.Attribute.BigInteger & Schema.Attribute.Unique;
-    postalCode: Schema.Attribute.Integer &
-      Schema.Attribute.SetMinMax<
-        {
-          max: 9999;
-        },
-        number
-      >;
     postalCodeText: Schema.Attribute.String &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 4;
