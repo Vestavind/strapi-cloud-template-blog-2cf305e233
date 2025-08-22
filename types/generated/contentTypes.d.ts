@@ -739,6 +739,17 @@ export interface ApiVimeoVideoVimeoVideo extends Struct.CollectionTypeSchema {
       'api::vimeo-video.vimeo-video'
     > &
       Schema.Attribute.Private;
+    mainPerson: Schema.Attribute.Enumeration<
+      [
+        'Geir Ugland Jacobsen',
+        'Anne Cecilie Kristensen',
+        'Kurt Pedersen',
+        'Martin Thaulow',
+        'Nikolai Vilnes',
+        '\u00D8ystein Steiro Sr.',
+        'Annen',
+      ]
+    >;
     priority: Schema.Attribute.Integer &
       Schema.Attribute.SetMinMax<
         {
@@ -752,6 +763,9 @@ export interface ApiVimeoVideoVimeoVideo extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    videoType: Schema.Attribute.Enumeration<
+      ['Edit', 'Podkast', 'Debatt', 'Annet']
+    >;
     vimeoURL: Schema.Attribute.String;
     xPostLink: Schema.Attribute.String;
   };

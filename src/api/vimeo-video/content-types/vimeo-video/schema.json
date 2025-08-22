@@ -37,6 +37,27 @@
     },
     "tiktokPostLink": {
       "type": "string"
+    },
+    "mainPerson": {
+      "type": "enumeration",
+      "enum": [
+        "Geir Ugland Jacobsen",
+        "Anne Cecilie Kristensen",
+        "Kurt Pedersen",
+        "Martin Thaulow",
+        "Nikolai Vilnes",
+        "Øystein Steiro Sr.",
+        "Annen"
+      ]
+    },
+    "videoType": {
+      "type": "enumeration",
+      "enum": [
+        "Edit",
+        "Podkast",
+        "Debatt",
+        "Annet"
+      ]
     }
   }
 }
