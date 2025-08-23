@@ -666,6 +666,7 @@ export interface ApiStemme22025Stemme22025 extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    valgdagStemme: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     wantsFreeMembership: Schema.Attribute.Boolean;
   };
 }
@@ -731,6 +732,7 @@ export interface ApiVimeoVideoVimeoVideo extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    date: Schema.Attribute.Date;
     fbPostLink: Schema.Attribute.String;
     instagramPostLink: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;

@@ -29,6 +29,10 @@
       "type": "string",
       "maxLength": 4,
       "minLength": 4
+    },
+    "valgdagStemme": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

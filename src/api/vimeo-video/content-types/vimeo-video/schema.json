@@ -58,6 +58,9 @@
         "Debatt",
         "Annet"
       ]
+    },
+    "date": {
+      "type": "date"
     }
   }
 }
