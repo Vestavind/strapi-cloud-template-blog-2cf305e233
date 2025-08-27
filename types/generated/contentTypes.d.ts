@@ -749,7 +749,6 @@ export interface ApiVimeoVideoVimeoVideo extends Struct.CollectionTypeSchema {
         'Martin Thaulow',
         'Nikolai Vilnes',
         '\u00D8ystein Steiro Sr.',
-        'Annen',
       ]
     >;
     priority: Schema.Attribute.Integer &
@@ -774,10 +773,12 @@ export interface ApiVimeoVideoVimeoVideo extends Struct.CollectionTypeSchema {
         'Penger',
         'Samfunn',
         'Kultur',
+        'Landbruk',
+        'Milj\u00F8',
       ]
     >;
     videoType: Schema.Attribute.Enumeration<
-      ['Edit', 'Podkast', 'Debatt', 'Annet']
+      ['Edit', 'Podkast', 'Debatt', 'Statisk']
     >;
     vimeoURL: Schema.Attribute.String;
     xPostLink: Schema.Attribute.String;

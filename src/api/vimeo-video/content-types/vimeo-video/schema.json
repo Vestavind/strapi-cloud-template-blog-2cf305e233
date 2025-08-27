@@ -46,8 +46,7 @@
         "Kurt Pedersen",
         "Martin Thaulow",
         "Nikolai Vilnes",
-        "Øystein Steiro Sr.",
-        "Annen"
+        "Øystein Steiro Sr."
       ]
     },
     "videoType": {
@@ -56,7 +55,7 @@
         "Edit",
         "Podkast",
         "Debatt",
-        "Annet"
+        "Statisk"
       ]
     },
     "date": {
@@ -71,7 +70,9 @@
         "Utenriks",
         "Penger",
         "Samfunn",
-        "Kultur"
+        "Kultur",
+        "Landbruk",
+        "Miljø"
       ]
     }
   }
