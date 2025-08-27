@@ -765,6 +765,17 @@ export interface ApiVimeoVideoVimeoVideo extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    videoTheme: Schema.Attribute.Enumeration<
+      [
+        'Suverenitet',
+        'Innvandring',
+        '\u00D8konomi',
+        'Utenriks',
+        'Penger',
+        'Samfunn',
+        'Kultur',
+      ]
+    >;
     videoType: Schema.Attribute.Enumeration<
       ['Edit', 'Podkast', 'Debatt', 'Annet']
     >;

@@ -61,6 +61,18 @@
     },
     "date": {
       "type": "date"
+    },
+    "videoTheme": {
+      "type": "enumeration",
+      "enum": [
+        "Suverenitet",
+        "Innvandring",
+        "Økonomi",
+        "Utenriks",
+        "Penger",
+        "Samfunn",
+        "Kultur"
+      ]
     }
   }
 }
