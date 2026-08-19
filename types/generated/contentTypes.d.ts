@@ -761,44 +761,6 @@ export interface ApiPressemeldingPressemelding
   };
 }
 
-export interface ApiStemme22025Stemme22025 extends Struct.CollectionTypeSchema {
-  collectionName: 'stemme2_2025s';
-  info: {
-    description: '';
-    displayName: 'Stemme2-2025';
-    pluralName: 'stemme2-2025s';
-    singularName: 'stemme2-2025';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    emailAddress: Schema.Attribute.Email & Schema.Attribute.Unique;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::stemme2-2025.stemme2-2025'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    phoneNumber: Schema.Attribute.BigInteger & Schema.Attribute.Unique;
-    postalCodeText: Schema.Attribute.String &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 4;
-        minLength: 4;
-      }>;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    valgdagStemme: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    wantsFreeMembership: Schema.Attribute.Boolean;
-  };
-}
-
 export interface ApiTargetGroupFunnelTargetGroupFunnel
   extends Struct.CollectionTypeSchema {
   collectionName: 'target_group_funnels';
@@ -1431,7 +1393,6 @@ declare module '@strapi/strapi' {
       'api::meme.meme': ApiMemeMeme;
       'api::podcast.podcast': ApiPodcastPodcast;
       'api::pressemelding.pressemelding': ApiPressemeldingPressemelding;
-      'api::stemme2-2025.stemme2-2025': ApiStemme22025Stemme22025;
       'api::target-group-funnel.target-group-funnel': ApiTargetGroupFunnelTargetGroupFunnel;
       'api::vimeo-video.vimeo-video': ApiVimeoVideoVimeoVideo;
       'plugin::content-releases.release': PluginContentReleasesRelease;

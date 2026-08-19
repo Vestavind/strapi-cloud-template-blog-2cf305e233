@@ -80,21 +80,6 @@ async function removeUnsafePublicPermissions() {
   }
 }
 
-async function purgeDeprecatedStemme22025Data() {
-  const uid = 'api::stemme2-2025.stemme2-2025';
-
-  if (!strapi.contentTypes[uid]) {
-    return;
-  }
-
-  const result = await strapi.db.query(uid).deleteMany({ where: {} });
-  const deletedCount = result?.count ?? 0;
-
-  strapi.log.info(
-    `Deleted ${deletedCount} deprecated Stemme2-2025 records`
-  );
-}
-
 function getFileSizeInBytes(filePath) {
   const stats = fs.statSync(filePath);
   const fileSizeInBytes = stats['size'];
@@ -297,6 +282,5 @@ async function main() {
 
 module.exports = async () => {
   await seedExampleApp();
-  await purgeDeprecatedStemme22025Data();
   await removeUnsafePublicPermissions();
 };
