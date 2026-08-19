@@ -35,32 +35,7 @@ async function isFirstRun() {
   return !initHasRun;
 }
 
-async function setPublicPermissions(newPermissions) {
-  // Find the ID of the public role
-  const publicRole = await strapi.query('plugin::users-permissions.role').findOne({
-    where: {
-      type: 'public',
-    },
-  });
-
-  // Create the new permissions and link them to the public role
-  const allPermissionsToCreate = [];
-  Object.keys(newPermissions).map((controller) => {
-    const actions = newPermissions[controller];
-    const permissionsToCreate = actions.map((action) => {
-      return strapi.query('plugin::users-permissions.permission').create({
-        data: {
-          action: `api::${controller}.${controller}.${action}`,
-          role: publicRole.id,
-        },
-      });
-    });
-    allPermissionsToCreate.push(...permissionsToCreate);
-  });
-  await Promise.all(allPermissionsToCreate);
-}
-
-async function ensurePublicPermissions(newPermissions) {
+async function removeUnsafePublicPermissions() {
   const publicRole = await strapi.query('plugin::users-permissions.role').findOne({
     where: {
       type: 'public',
@@ -73,28 +48,36 @@ async function ensurePublicPermissions(newPermissions) {
         role: publicRole.id,
       },
     });
-  const existingActions = new Set(
-    existingPermissions.map((permission) => permission.action)
-  );
-  const permissionsToCreate = [];
+  const contentApiRequiresToken =
+    process.env.CONTENT_API_REQUIRES_TOKEN !== 'false';
+  const permissionsToRemove = existingPermissions.filter((permission) => {
+    const action = permission.action || '';
+    const isApplicationPermission = action.startsWith('api::');
+    const isUploadPermission = action.startsWith('plugin::upload.');
+    const isEndUserPermission = action.startsWith(
+      'plugin::users-permissions.'
+    );
 
-  Object.entries(newPermissions).forEach(([controller, actions]) => {
-    actions.forEach((action) => {
-      const permissionAction = `api::${controller}.${controller}.${action}`;
-      if (!existingActions.has(permissionAction)) {
-        permissionsToCreate.push(
-          strapi.query('plugin::users-permissions.permission').create({
-            data: {
-              action: permissionAction,
-              role: publicRole.id,
-            },
-          })
-        );
-      }
-    });
+    return (
+      isUploadPermission ||
+      isEndUserPermission ||
+      (contentApiRequiresToken && isApplicationPermission)
+    );
   });
 
-  await Promise.all(permissionsToCreate);
+  await Promise.all(
+    permissionsToRemove.map((permission) =>
+      strapi.query('plugin::users-permissions.permission').delete({
+        where: { id: permission.id },
+      })
+    )
+  );
+
+  if (permissionsToRemove.length > 0) {
+    strapi.log.info(
+      `Removed ${permissionsToRemove.length} unsafe public API permissions`
+    );
+  }
 }
 
 function getFileSizeInBytes(filePath) {
@@ -274,15 +257,6 @@ async function importAuthors() {
 }
 
 async function importSeedData() {
-  // Allow read of application content types
-  await setPublicPermissions({
-    article: ['find', 'findOne'],
-    category: ['find', 'findOne'],
-    author: ['find', 'findOne'],
-    global: ['find', 'findOne'],
-    about: ['find', 'findOne'],
-  });
-
   // Create all entries
   await importCategories();
   await importAuthors();
@@ -307,8 +281,6 @@ async function main() {
 
 
 module.exports = async () => {
-  await ensurePublicPermissions({
-    fylkesleder: ['find', 'findOne'],
-  });
   await seedExampleApp();
+  await removeUnsafePublicPermissions();
 };
