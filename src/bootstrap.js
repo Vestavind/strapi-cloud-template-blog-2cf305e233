@@ -60,6 +60,43 @@ async function setPublicPermissions(newPermissions) {
   await Promise.all(allPermissionsToCreate);
 }
 
+async function ensurePublicPermissions(newPermissions) {
+  const publicRole = await strapi.query('plugin::users-permissions.role').findOne({
+    where: {
+      type: 'public',
+    },
+  });
+  const existingPermissions = await strapi
+    .query('plugin::users-permissions.permission')
+    .findMany({
+      where: {
+        role: publicRole.id,
+      },
+    });
+  const existingActions = new Set(
+    existingPermissions.map((permission) => permission.action)
+  );
+  const permissionsToCreate = [];
+
+  Object.entries(newPermissions).forEach(([controller, actions]) => {
+    actions.forEach((action) => {
+      const permissionAction = `api::${controller}.${controller}.${action}`;
+      if (!existingActions.has(permissionAction)) {
+        permissionsToCreate.push(
+          strapi.query('plugin::users-permissions.permission').create({
+            data: {
+              action: permissionAction,
+              role: publicRole.id,
+            },
+          })
+        );
+      }
+    });
+  });
+
+  await Promise.all(permissionsToCreate);
+}
+
 function getFileSizeInBytes(filePath) {
   const stats = fs.statSync(filePath);
   const fileSizeInBytes = stats['size'];
@@ -270,5 +307,8 @@ async function main() {
 
 
 module.exports = async () => {
+  await ensurePublicPermissions({
+    fylkesleder: ['find', 'findOne'],
+  });
   await seedExampleApp();
 };
